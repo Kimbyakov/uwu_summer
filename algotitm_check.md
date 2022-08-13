@@ -44,3 +44,5 @@
    ```cppcheck --enable=all --suppress=missingIncludeSystem src/soursefile_name.c``` \
    Также можно проверить сразу все файлы с исходным кодом в директории: \
  >  ```cppcheck --enable=all --suppress=missingIncludeSystem src/```
+
+5)  Проверяем на учетки (дополняется) 
