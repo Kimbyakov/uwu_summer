@@ -2095,6 +2095,100 @@ int main(){
 */
 
 /*
+// Удалить последнее вхождение подстроки в строке
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define N 200
+                                                                     
+void reverse_string(char *);
+char *sub_string(char *, char *);
+
+int main() {
+    char string[N], substr[N];
+    char *result;
+    char c;
+    int i = 0;
+
+    while (scanf("%c", &c) == 1) {
+        if (c == '\n') {
+            string[i] = '\0';
+            break;
+        }
+        string[i++] = c;
+    }
+    i = 0;
+    while (scanf("%c", &c) == 1) {
+        if (c == '\n') {
+            substr[i] = '\0';
+            break;
+        }
+        substr[i++] = c;
+    }
+
+    reverse_string(string);
+    reverse_string(substr);
+
+    result = sub_string(string, substr);
+
+    printf("%s", result);
+    return 0;
+}
+
+char *sub_string(char *string, char *substr) {
+    int i = 0, j = 0, k = 0, n = 0, flag = 0;
+    char *res = string;
+    for (i = 0; res[i] != '\0'; i++) {
+        k = i;
+        if (!flag) {
+            while (res[i] == substr[j]) {
+                i++, j++;
+                if (j == (int)strlen(substr)) {
+                    flag = 1;
+                    break;
+                }
+            }
+        }
+        if (flag == 0) {
+            i = k;
+            j = 0;
+        } else if (flag == 1) {
+            res[n++] = res[i];
+            continue;
+        } else {
+            flag = 0;
+        }
+        res[n++] = res[i];
+    }
+    res[n] = '\0';
+    reverse_string(res);
+    return res;
+}
+
+void reverse_string(char *str) {
+    if (str == 0) {
+        return;
+    }
+    if (*str == 0) {
+        return;
+    }
+
+    char *start = str;
+    char *end = start + strlen(str) - 1;
+    char temp;
+
+    while (end > start) {
+        temp = *start;
+        *start = *end;
+        *end = temp;
+        ++start;
+        --end;
+    }
+}
+*/
+
+/*
 
 Задания для решений: 
 5 - вывести матрицу с числами от 1 до н^2 по змейке из левого верхнего угла в центр (как на степике)
