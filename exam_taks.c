@@ -2197,15 +2197,17 @@ int max_digit(int number);  // Не ленитесь выносить логич
 int main(void) {
   int number;
 
-  scanf("%d", &number);  // Я задачу не встречал, но если в условии есть проверки на n/a, то их нужно сделать здесь. Это решение без проверок.
-
-  printf("%d", max_digit(number));
+  if (scanf("%d", &number) != 1) {  // Задачу не встречал - не знаю нужна ли здесь проверка на n/a или проверка на отрицательное число.
+    printf("n/a");
+  } else {
+    printf("%d", max_digit(number));
+  }
 
   return 0;
 }
 
 int max_digit(int number) {
-  int max_digit = 0;
+  int max_digit = 0;  // Давайте переменным осмысленные названия - код и отладка проще восприниматься будет.
 
   if (number < 0) {  // Если в условии число может быть отрицательным, то нам удобнее его сделть положительным.
     number *= -1;
@@ -2222,6 +2224,27 @@ int max_digit(int number) {
   }
 
   return max_digit;
+}
+*/
+
+/*
+// Найти максимальное число из непустой последовательности неотрицательных чисел, кончающейся на -1.
+#include <stdio.h>
+
+int main(void) {
+  int number = 0;
+  int max_value = -1;
+
+  while (number != -1) {
+    scanf("%d", &number);
+    if (number > max_value) {
+      max_value = number;
+    }
+  }
+
+  printf("%d", max_value);
+
+  return 0;
 }
 */
 
