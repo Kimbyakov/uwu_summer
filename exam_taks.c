@@ -1,5 +1,75 @@
-/* Task 1 - Своп максимальных и минимальных значений матрицы */
 
+   ===============================================================================
+/* Task 1 - I'm Groot.  						lvl 1. 
+
+Вывести на экран сообщение        "I'm Grood", (c) Grood  
+Обратте внимание что должно быть выведено сообщение именно в таком формате с кавычками
+На вход программы ничего не подается
+--------------------------------------------------------------------------------*/
+
+#include <stdio.h>
+int main() {
+
+    printf("\"I'm Grood\", (c) Grood"); 
+    /* если поставить / перед  спец. символом, то он считывается как обычный символ, 
+    это называется экранированием */
+    return 0;
+	
+}
+
+===============================================================================
+/* Task 2 - Return five numbers  					lvl 1   
+   
+Дан шаблон программы, измените программу, чтобы она
+считала на вход число и вывести его в формате ниже
+Вход    Выход
+0       00000
+1       00001           
+10      00010
+666666  666666
+--------------------------------------------------------------------------------*/
+	   
+	   
+#include <stdio.h>
+int main() {
+    int num;
+    scanf("%d", &num);
+    printf("%05d", num);
+
+    return 0;
+}
+
+  ===============================================================================
+/* Task 3 - Radian calculating					lvl 2    
+
+перевести радианы (действительное число) в градусы (целое число)
+(проверка на то, что радианы >=0 НЕ НУЖНА, проверено мистейком)
+Математически округлить ответ до двух знаков после запятой 
+Дано 1 градус  = 57.29 рад
+
+Пример
+Вход Выход
+1     57
+2     115
+--------------------------------------------------------------------------------*/	
+
+	 
+#include <stdio.h>
+int main() {
+    
+    int degree;
+    float radian = 57.29;
+    scanf("%d", &degree); 
+    printf("%.f", degree * radian);
+    
+    return 0;
+}
+
+===============================================================================
+
+/* Task 4 - Своп максимальных и минимальных значений матрицы (изменено 25.08) */
+
+	
 #include <stdio.h>
 
 int main() {
@@ -24,44 +94,38 @@ int main() {
     }
   }
 
-  int max_i = 0, min_i = 0, max = a[0][0], min = a[0][0];
+  int max_i = 0, min_i = 0, max = a[0][0], min = a[0][0], max_j = 0, min_j = 0;
 
   for (int i = 0; i < M; i++) {
     for (int j = 0; j < N; j++) {
       if (a[i][j] > max) {
         max = a[i][j];
         max_i = i;
+        max_j = j;
       }
       if (a[i][j] < min) {
         min = a[i][j];
         min_i = i;
+        min_j = j;
       }
     }
   }
 
-  for (int j = 0; j < N; j++) {
-    int tmp = a[max_i][j];
-    a[max_i][j] = a[min_i][j];
-    a[min_i][j] = tmp;
-  }
+  int tmp = a[min_i][min_j];
+  a[min_i][min_j] = a[max_i][max_j];
+  a[max_i][max_j] = tmp;
 
   for (int i = 0; i < M; i++) {
     for (int j = 0; j < N; j++) {
-      if (j < N - 1) {
         printf("%d ", a[i][j]);
-      } else {
-        printf("%d", a[i][j]);
-        printf("\n");
       }
+      printf("\n");
     }
-  }
 }
 
-
 =====================================================================
-/* Task 3 - На вход подается строка, является она палиндромом или нет 
-Вариант 1
-*/
+/* Task 5 - На вход подается строка, является она палиндромом или нет  */
+Вариант 1							
 	
 #include <stdio.h>
 #include <string.h>
@@ -122,7 +186,7 @@ int main() {
 */
 
 =====================================================================
-/* Task 4 - Умножение матриц*/
+/* Task 6 - Умножение матриц*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -256,12 +320,12 @@ void output(size_t i, char* array) {
 которая бы выводила 1, если третье число массива расположено 
 между первым и вторым. Не использовать if.
 
-
 Пример ввода : 0 9 5
 Пример вывода: 1
 Пример ввода: 1 2 3
 Пример вывода : 0
 --------------------------------------------------------------- */
+	
 	
 #include <stdio.h>
 #include <math.h>
@@ -279,8 +343,6 @@ int main() {
     printf("%d", result);
     return 0;
 }
-
-
 
 =====================================================================
 /* Task 7 - Вывести число в обратном порядке*/
@@ -583,53 +645,7 @@ int main() {
 	return 0;
 }
 
-=====================================================================
-/* Task 13 - Дана последовательность целх числе. Число н. Символ конца -1. 
-Вывести х1 хн х2 хн-1 х3 хн-2	*/
 
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
-    int kArrayLenght = 2, counter_for_output, temp, *pointer_to_the_array;
-    pointer_to_the_array = (int*)malloc(sizeof(int));
-    if (pointer_to_the_array == NULL) {
-        printf("n/a");
-        return 1;
-    } else {
-        for (int i = 0; i < kArrayLenght; i++) {
-            if (!scanf("%d", &temp)) {
-                printf("n/a");
-                return 1;
-            } else if (temp == -1) {
-                kArrayLenght = i;
-            } else {
-                pointer_to_the_array[i] = temp;
-                kArrayLenght += 1;
-                pointer_to_the_array = (int*)realloc(pointer_to_the_array, (kArrayLenght)*sizeof(int));
-                }
-        }
-        counter_for_output = kArrayLenght;
-        printf("Array of numbers after input:\n");
-        for (int i = 0; i < kArrayLenght; i++) {
-            printf("%d", pointer_to_the_array[i]);
-            if (i < kArrayLenght - 1) {
-                printf(" ");
-            } else if (i == kArrayLenght - 1) {
-                printf("\n");
-            }
-        }
-        printf("Array of numbers multiplied:\n");
-        for (int j = 0; j < kArrayLenght; j++) {
-            printf("%d", pointer_to_the_array[j] * counter_for_output);
-            counter_for_output--;
-            if (j < kArrayLenght - 1) {
-                printf(" ");
-            }
-        }
-    }
-    free(pointer_to_the_array);
-}
 
 =====================================================================
 /* Task 14 - Умножение матрица через динамический массив	*/
@@ -746,7 +762,9 @@ int main() {
 }
 
 =====================================================================
-/* Task 16 - Задание с пробелом	*/
+/* Task 16 - ЗУдалить избыточные пробелы оставить 1 пробел между словами
+нулевой элемент и последний элемент не могут быть пробелами не переводить 
+на следующую строчку входная строка заканчивается \n */
 
 #include <stdio.h>
 #include <string.h>
@@ -1722,73 +1740,7 @@ int main() {
     }
 }
 
-   ===============================================================================
-/* Task 35 - I'm Groot.  						lvl 1. 
 
-Вывести на экран сообщение        "I'm Grood", (c) Grood  
-Обратте внимание что должно быть выведено сообщение именно в таком формате с кавычками
-На вход программы ничего не подается
---------------------------------------------------------------------------------*/
-
-#include <stdio.h>
-int main() {
-
-    printf("\"I'm Grood\", (c) Grood"); 
-    /* если поставить / перед  спец. символом, то он считывается как обычный символ, 
-    это называется экранированием */
-    return 0;
-	
-}
-
-===============================================================================
-/* Task 36 - Return five numbers  					lvl 1   
-   
-Дан шаблон программы, измените программу, чтобы она
-считала на вход число и вывести его в формате ниже
-Вход    Выход
-0       00000
-1       00001           
-10      00010
-666666  666666
---------------------------------------------------------------------------------*/
-	   
-	   
-#include <stdio.h>
-int main() {
-    int num;
-    scanf("%d", &num);
-    printf("%05d", num);
-
-    return 0;
-}
-
-  ===============================================================================
-/* Task 37 - Radian calculating					lvl 2    
-
-перевести радианы (действительное число) в градусы (целое число)
-(проверка на то, что радианы >=0 НЕ НУЖНА, проверено мистейком)
-Математически округлить ответ до двух знаков после запятой 
-Дано 1 градус  = 57.29 рад
-
-Пример
-Вход Выход
-1     57
-2     115
---------------------------------------------------------------------------------*/	
-
-	 
-#include <stdio.h>
-int main() {
-    
-    int degree;
-    float radian = 57.29;
-    scanf("%d", &degree); 
-    printf("%.f", degree * radian);
-    
-    return 0;
-
-}
-  ===============================================================================
 /* Task 38 - Задача с  FILE				  
 
 Написать программу, осуществляющую подсчет количества цифр (0-9), которые содержатся в текстовом файле, путь которого задается на стандартном потоке ввода
@@ -2230,6 +2182,54 @@ void reverse_string(char *str) {
 }
 
 
+=====================================================================
+/* Task 13 - Дана последовательность целх числе. Число н. Символ конца -1. 
+Вывести х1 хн х2 хн-1 х3 хн-2	*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int kArrayLenght = 2, counter_for_output, temp, *pointer_to_the_array;
+    pointer_to_the_array = (int*)malloc(sizeof(int));
+    if (pointer_to_the_array == NULL) {
+        printf("n/a");
+        return 1;
+    } else {
+        for (int i = 0; i < kArrayLenght; i++) {
+            if (!scanf("%d", &temp)) {
+                printf("n/a");
+                return 1;
+            } else if (temp == -1) {
+                kArrayLenght = i;
+            } else {
+                pointer_to_the_array[i] = temp;
+                kArrayLenght += 1;
+                pointer_to_the_array = (int*)realloc(pointer_to_the_array, (kArrayLenght)*sizeof(int));
+                }
+        }
+        counter_for_output = kArrayLenght;
+        printf("Array of numbers after input:\n");
+        for (int i = 0; i < kArrayLenght; i++) {
+            printf("%d", pointer_to_the_array[i]);
+            if (i < kArrayLenght - 1) {
+                printf(" ");
+            } else if (i == kArrayLenght - 1) {
+                printf("\n");
+            }
+        }
+        printf("Array of numbers multiplied:\n");
+        for (int j = 0; j < kArrayLenght; j++) {
+            printf("%d", pointer_to_the_array[j] * counter_for_output);
+            counter_for_output--;
+            if (j < kArrayLenght - 1) {
+                printf(" ");
+            }
+        }
+    }
+    free(pointer_to_the_array);
+}
+
 
 
 // Дано целое число, вывести максимальную его цифру
@@ -2308,5 +2308,5 @@ int main(void) {
 1 2 3
 8 9 4
 7 6 5
-
+================
 */
